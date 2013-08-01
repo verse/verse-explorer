@@ -1,0 +1,35 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>../icons/folder.png</file>
+        <file>../icons/list-add.png</file>
+        <file>../icons/list-remove.png</file>
+        <file>../icons/face-monkey.png</file>
+        <file>../icons/face-smile.png</file>
+        <file>../icons/folder-visiting.png</file>
+        <file>../icons/system-users.png</file>
+        <file>../icons/user-desktop.png</file>
+        <file>../icons/user-home.png</file>
+        <file>../icons/folder-open.png</file>
+        <file>../icons/tab-new.png</file>
+        <file>../icons/emblem-readonly.png</file>
+        <file>../icons/emblem-unreadable.png</file>
+        <file>../icons/folder-new.png</file>
+        <file>../icons/face-monkey_unsubscribed.png</file>
+        <file>../icons/face-smile_unsubscribed.png</file>
+        <file>../icons/folder-open_unsubscribed.png</file>
+        <file>../icons/folder_unsubscribed.png</file>
+        <file>../icons/system-users_unsubscribed.png</file>
+        <file>../icons/user-home_unsubscribed.png</file>
+        <file>../icons/user-desktop_unsubscribed.png</file>
+        <file>../icons/emblem-default.png</file>
+        <file>../icons/emblem-locked.png</file>
+        <file>../icons/emblem-unknown.png</file>
+        <file>../icons/emblem-locked-me.png</file>
+        <file>../icons/lock.png</file>
+        <file>../icons/network-server.png</file>
+        <file>../icons/network-server_unsubscribed.png</file>
+        <file>../icons/unlock.png</file>
+        <file>../icons/tag-group.png</file>
+        <file>../icons/emblem-system.png</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,658 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>VerseClient</class>
+ <widget class="QMainWindow" name="VerseClient">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>700</width>
+    <height>500</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>VerseClient</string>
+  </property>
+  <property name="locale">
+   <locale language="English" country="UnitedStates"/>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <property name="locale">
+    <locale language="English" country="UnitedStates"/>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="tabShape">
+       <enum>QTabWidget::Rounded</enum>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <property name="documentMode">
+       <bool>false</bool>
+      </property>
+      <property name="tabsClosable">
+       <bool>true</bool>
+      </property>
+      <property name="movable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="tab_1">
+       <attribute name="title">
+        <string>localhost</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetDefaultConstraint</enum>
+          </property>
+          <item>
+           <widget class="QLabel" name="hostLabel">
+            <property name="text">
+             <string>Host:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="urlLineEdit">
+            <property name="text">
+             <string>localhost</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="connectButton">
+            <property name="text">
+             <string>Connect</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QSplitter" name="splitter_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="handleWidth">
+           <number>6</number>
+          </property>
+          <widget class="QTreeView" name="nodeTreeView">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="contextMenuPolicy">
+            <enum>Qt::CustomContextMenu</enum>
+           </property>
+           <property name="dragEnabled">
+            <bool>true</bool>
+           </property>
+           <property name="dragDropOverwriteMode">
+            <bool>true</bool>
+           </property>
+           <property name="dragDropMode">
+            <enum>QAbstractItemView::InternalMove</enum>
+           </property>
+           <property name="defaultDropAction">
+            <enum>Qt::MoveAction</enum>
+           </property>
+           <property name="alternatingRowColors">
+            <bool>true</bool>
+           </property>
+           <property name="selectionMode">
+            <enum>QAbstractItemView::SingleSelection</enum>
+           </property>
+           <property name="animated">
+            <bool>true</bool>
+           </property>
+          </widget>
+          <widget class="QSplitter" name="splitter">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="handleWidth">
+            <number>6</number>
+           </property>
+           <widget class="QTreeView" name="dataTreeView">
+            <property name="contextMenuPolicy">
+             <enum>Qt::CustomContextMenu</enum>
+            </property>
+            <property name="animated">
+             <bool>true</bool>
+            </property>
+           </widget>
+           <widget class="QTableView" name="dataTableView">
+            <property name="contextMenuPolicy">
+             <enum>Qt::CustomContextMenu</enum>
+            </property>
+           </widget>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>700</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="tearOffEnabled">
+     <bool>false</bool>
+    </property>
+    <property name="title">
+     <string>Client</string>
+    </property>
+    <addaction name="actionTesting_mode"/>
+    <addaction name="separator"/>
+    <addaction name="actionConnect"/>
+    <addaction name="actionDisconnect"/>
+    <addaction name="separator"/>
+    <addaction name="actionFPS"/>
+    <addaction name="actionAuto_subscribe"/>
+    <addaction name="actionAuto_expand"/>
+    <addaction name="separator"/>
+    <addaction name="actionQuit"/>
+   </widget>
+   <widget class="QMenu" name="menuNode">
+    <property name="title">
+     <string>Node</string>
+    </property>
+    <addaction name="actionCreate"/>
+    <addaction name="actionDestroy"/>
+    <addaction name="actionParent"/>
+    <addaction name="separator"/>
+    <addaction name="actionSubscribe"/>
+    <addaction name="actionUnSubscribe"/>
+    <addaction name="separator"/>
+    <addaction name="actionLock"/>
+    <addaction name="actionUnLock"/>
+    <addaction name="separator"/>
+    <addaction name="actionPermissions"/>
+    <addaction name="actionOwner"/>
+    <addaction name="separator"/>
+    <addaction name="actionExpand_all"/>
+   </widget>
+   <widget class="QMenu" name="menuTagGroup">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="title">
+     <string>TagGroup</string>
+    </property>
+    <addaction name="actionCreate_TagGroup"/>
+    <addaction name="actionDestroy_TagGroup"/>
+    <addaction name="separator"/>
+    <addaction name="actionSubscribe_TagGroup"/>
+    <addaction name="actionUnSubscribe_TagGroup"/>
+    <addaction name="separator"/>
+    <addaction name="actionExpand_All"/>
+   </widget>
+   <widget class="QMenu" name="menuTag">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="title">
+     <string>Tag</string>
+    </property>
+    <addaction name="actionCreate_Tag"/>
+    <addaction name="actionDestroy_Tag"/>
+    <addaction name="separator"/>
+    <addaction name="actionChange_Value"/>
+   </widget>
+   <widget class="QMenu" name="menuLayer">
+    <property name="title">
+     <string>Layer</string>
+    </property>
+    <addaction name="actionCreate_Layer"/>
+    <addaction name="actionDestroy_Layer"/>
+    <addaction name="separator"/>
+    <addaction name="actionSubscribe_Layer"/>
+    <addaction name="actionUnsubscribe_Layer"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuNode"/>
+   <addaction name="menuTagGroup"/>
+   <addaction name="menuTag"/>
+   <addaction name="menuLayer"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionCreate">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/images/icons/list-add.png</normaloff>:/images/icons/list-add.png</iconset>
+   </property>
+   <property name="text">
+    <string>Create</string>
+   </property>
+   <property name="toolTip">
+    <string>Create  new node at verse server</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionSubscribe">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Subscribe</string>
+   </property>
+   <property name="toolTip">
+    <string>Subscribe from selected node(s)</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+S</string>
+   </property>
+  </action>
+  <action name="actionUnSubscribe">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>UnSubscribe</string>
+   </property>
+   <property name="toolTip">
+    <string>UnSubscribe from selected node(s)</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+U</string>
+   </property>
+  </action>
+  <action name="actionDestroy">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/images/icons/list-remove.png</normaloff>:/images/icons/list-remove.png</iconset>
+   </property>
+   <property name="text">
+    <string>Destroy</string>
+   </property>
+   <property name="toolTip">
+    <string>Destroy selected node(s)</string>
+   </property>
+   <property name="shortcut">
+    <string>Del</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionConnect">
+   <property name="text">
+    <string>Connect</string>
+   </property>
+   <property name="toolTip">
+    <string>Connect to Verse server</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+C</string>
+   </property>
+  </action>
+  <action name="actionDisconnect">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Disconnect</string>
+   </property>
+   <property name="toolTip">
+    <string>Disconnect from Verse server</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+D</string>
+   </property>
+  </action>
+  <action name="actionPermissions">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Permissions ...</string>
+   </property>
+   <property name="toolTip">
+    <string>Change node permissions</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+P</string>
+   </property>
+  </action>
+  <action name="actionOwner">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Owner ...</string>
+   </property>
+   <property name="toolTip">
+    <string>Owner of selected node(s)</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+O</string>
+   </property>
+  </action>
+  <action name="actionLock">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/images/icons/lock.png</normaloff>:/images/icons/lock.png</iconset>
+   </property>
+   <property name="text">
+    <string>Lock</string>
+   </property>
+   <property name="toolTip">
+    <string>Lock selected node(s)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionUnLock">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/images/icons/unlock.png</normaloff>:/images/icons/unlock.png</iconset>
+   </property>
+   <property name="text">
+    <string>UnLock</string>
+   </property>
+   <property name="toolTip">
+    <string>UnLock selected node(s)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+U</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionTesting_mode">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Testing mode</string>
+   </property>
+   <property name="toolTip">
+    <string>Enable all actions in testing mode</string>
+   </property>
+  </action>
+  <action name="actionCreate_TagGroup">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/images/icons/list-add.png</normaloff>:/images/icons/list-add.png</iconset>
+   </property>
+   <property name="text">
+    <string>Create ...</string>
+   </property>
+   <property name="toolTip">
+    <string>Create new TagGroup</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+G</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionDestroy_TagGroup">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/images/icons/list-remove.png</normaloff>:/images/icons/list-remove.png</iconset>
+   </property>
+   <property name="text">
+    <string>Destroy</string>
+   </property>
+   <property name="toolTip">
+    <string>Destroy TagGroup</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionSubscribe_TagGroup">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Subscribe</string>
+   </property>
+   <property name="toolTip">
+    <string>Subscribe to TagGroup</string>
+   </property>
+  </action>
+  <action name="actionUnSubscribe_TagGroup">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>UnSubscribe</string>
+   </property>
+   <property name="toolTip">
+    <string>Unsubscribe from TagGroup</string>
+   </property>
+  </action>
+  <action name="actionCreate_Tag">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/images/icons/list-add.png</normaloff>:/images/icons/list-add.png</iconset>
+   </property>
+   <property name="text">
+    <string>Create ...</string>
+   </property>
+   <property name="toolTip">
+    <string>Create new Tag</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+T</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionDestroy_Tag">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/images/icons/list-remove.png</normaloff>:/images/icons/list-remove.png</iconset>
+   </property>
+   <property name="text">
+    <string>Destroy</string>
+   </property>
+   <property name="toolTip">
+    <string>Destroy Tag</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionAuto_subscribe">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Auto-subscribe</string>
+   </property>
+   <property name="toolTip">
+    <string>Automaticaly subscribe to all nodes</string>
+   </property>
+  </action>
+  <action name="actionExpand_all">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Expand all</string>
+   </property>
+  </action>
+  <action name="actionAuto_expand">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Auto-expand</string>
+   </property>
+   <property name="toolTip">
+    <string>Automatically expand tree node</string>
+   </property>
+  </action>
+  <action name="actionFPS">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>FPS ...</string>
+   </property>
+   <property name="toolTip">
+    <string>Frames Per Seconds of connection</string>
+   </property>
+  </action>
+  <action name="actionCreate_Layer">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/images/icons/list-add.png</normaloff>:/images/icons/list-add.png</iconset>
+   </property>
+   <property name="text">
+    <string>Create</string>
+   </property>
+   <property name="toolTip">
+    <string>Create new layer</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
+   </property>
+  </action>
+  <action name="actionDestroy_Layer">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/images/icons/list-remove.png</normaloff>:/images/icons/list-remove.png</iconset>
+   </property>
+   <property name="text">
+    <string>Destroy</string>
+   </property>
+   <property name="toolTip">
+    <string>Destroy layer</string>
+   </property>
+  </action>
+  <action name="actionSubscribe_Layer">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Subscribe</string>
+   </property>
+   <property name="toolTip">
+    <string>Subscribe to the layer</string>
+   </property>
+  </action>
+  <action name="actionUnsubscribe_Layer">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Unsubscribe</string>
+   </property>
+   <property name="toolTip">
+    <string>Unsubscribe from the layer</string>
+   </property>
+  </action>
+  <action name="actionChange_Value">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Change Value ...</string>
+   </property>
+   <property name="toolTip">
+    <string>Change Value of the Tag</string>
+   </property>
+  </action>
+  <action name="actionParent">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Parent ...</string>
+   </property>
+  </action>
+  <action name="actionExpand_All">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Expand All</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
+ <connections/>
+</ui>
