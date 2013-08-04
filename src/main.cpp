@@ -163,6 +163,10 @@ void cb_receive_user_authenticate(const uint8_t session_id,
 
 int main(int argc, char *argv[])
 {
+    // Set information about client
+    std::string client_name = "Verse Explorer";
+    std::string client_version = "0.1";
+    vrs_set_client_info((char*)client_name.c_str(), (char*)client_version.c_str());
     // Set debug level
     vrs_set_debug_level(VRS_PRINT_DEBUG_MSG);
 

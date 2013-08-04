@@ -40,11 +40,9 @@ VerseClient::VerseClient(QWidget *parent) :
 
     this->node_auto_expand = false;
 
-    connect(timer, SIGNAL(timeout()), this, SLOT(callUpdate()));
+    connect(this->timer, SIGNAL(timeout()), this, SLOT(callUpdate()));
 
     this->fps = 60;
-
-    timer->start((int)1000/this->fps);
 }
 
 
@@ -243,7 +241,7 @@ void VerseClient::setFPS(float _fps)
 {
     this->fps = _fps;
 
-    this->timer->start(_fps);
+    this->timer->start((int)1000/_fps);
 }
 
 void VerseClient::selectionChangedSlot(const QItemSelection &/*newSelection*/, const QItemSelection &/*oldSelection*/)
@@ -320,6 +318,7 @@ int VerseClient::connectToServer(const QString &hostname)
 
     ret = vrs_send_connect_request(ba.data(), "12345", 0, &session_id);
     if(ret == VRS_SUCCESS) {
+        this->timer->start((int)1000/this->fps);
         return 1;
     } else {
         return 0;
@@ -838,6 +837,8 @@ void VerseClient::cbReceiveConnectTerminate(const uint8_t session_id,
     }
 
     this->states = STATE_DISCONNECTED;
+
+    this->timer->stop();
 }
 
 
