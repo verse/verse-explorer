@@ -1,4 +1,4 @@
-#include <QtGui/QApplication>
+#include <QApplication> 
 
 #include "verse_client.h"
 
