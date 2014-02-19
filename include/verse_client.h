@@ -146,6 +146,14 @@ public:
                          const uint8_t count,
                          const void *value);
 
+    void cbReceiveLayerCreate(const uint8_t session_id,
+                              const uint32_t node_id,
+                              const uint16_t parent_layer_id,
+                              const uint16_t layer_id,
+                              const uint8_t data_type,
+                              const uint8_t count,
+                              const uint16_t custom_type);
+
     void updateActionsAvailibility(void);
 
     uint8_t getSessionID(void) {return this->session_id;}

@@ -56,6 +56,9 @@ VerseNode::~VerseNode()
     // Clear map of taggroups
     this->taggroups.clear();
 
+    // Clear map of layers
+    this->layers.clear();
+
     // Clear all data
     this->removeData();
 
@@ -222,8 +225,27 @@ void VerseNode::setPrio(uint8_t prio)
 void VerseNode::removeNodeData(void)
 {
     this->taggroups.clear();
+    this->layers.clear();
     this->removeData();
     this->getDataModel()->update();
+}
+
+void VerseNode::addLayer(VerseLayer *layer)
+{
+    this->layers[layer->getID()] = layer;
+}
+
+VerseLayer *VerseNode::getLayer(uint16_t layer_id)
+{
+    std::map<uint16_t, VerseLayer*>::iterator layer_iter;
+
+    layer_iter = this->layers.find(layer_id);
+
+    if(layer_iter != this->layers.end()) {
+        return layer_iter->second;
+    } else {
+        return NULL;
+    }
 }
 
 void VerseNode::addTagGroup(VerseTagGroup *tag_group)

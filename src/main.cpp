@@ -6,6 +6,19 @@
 
 VerseClient *client = NULL;
 
+void cb_receive_layer_create(const uint8_t session_id,
+     const uint32_t node_id,
+     const uint16_t parent_layer_id,
+     const uint16_t layer_id,
+     const uint8_t data_type,
+     const uint8_t count,
+     const uint16_t custom_type)
+{
+    if(client != NULL) {
+        client->cbReceiveLayerCreate(session_id, node_id, parent_layer_id, layer_id, data_type, count, custom_type);
+    }
+}
+
 void cb_receive_tag_set_value(const uint8_t session_id,
         const uint32_t node_id,
         const uint16_t taggroup_id,
@@ -194,6 +207,9 @@ int main(int argc, char *argv[])
 
     // Register tag set callback functions
     vrs_register_receive_tag_set_value(cb_receive_tag_set_value);
+
+    // Register layer callback functions
+    vrs_register_receive_layer_create(cb_receive_layer_create);
 
     QApplication a(argc, argv);
     VerseClient w;

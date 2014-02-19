@@ -172,7 +172,7 @@ public:
     uint8_t getTagValueSize(void) { return this->value_size; }
 
     /**
-      * \brief The getter of name
+      * \brief The getter of custom type
       */
     uint8_t getClientType(void) { return this->client_type; }
 

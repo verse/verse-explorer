@@ -28,7 +28,8 @@ SOURCES += src/main.cpp\
     src/verse_data_model.cpp \
     src/fpsdialog.cpp \
     src/tagvaluedialog.cpp \
-    src/nodedialog.cpp
+    src/nodedialog.cpp \
+    src/verse_layer.cpp
 
 INCLUDEPATH += $$PWD/include
 
@@ -48,7 +49,8 @@ HEADERS  += \
     include/verse_data_model.h \
     include/fpsdialog.h \
     include/tagvaluedialog.h \
-    include/nodedialog.h
+    include/nodedialog.h \
+    include/verse_layer.h
 
 FORMS    += ui/verseclient.ui \
     ui/logindialog.ui \

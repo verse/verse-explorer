@@ -12,6 +12,9 @@
 #include "ui_logindialog.h"
 #include "ui_tagdialog.h"
 #include "nodedialog.h"
+#include "verse_layer.h"
+#include "verse_taggroup.h"
+#include "verse_tag.h"
 
 #include <QTimer>
 
@@ -322,6 +325,31 @@ int VerseClient::connectToServer(const QString &hostname)
         return 1;
     } else {
         return 0;
+    }
+}
+
+void VerseClient::cbReceiveLayerCreate(const uint8_t session_id,
+                                       const uint32_t node_id,
+                                       const uint16_t parent_layer_id,
+                                       const uint16_t layer_id,
+                                       const uint8_t data_type,
+                                       const uint8_t count,
+                                       const uint16_t custom_type)
+{
+    VerseNode *node;
+
+    std::cout << "session_id: " << session_id << " node_id: " << node_id << " parent_layer_id: " << parent_layer_id << " layer_id: " << layer_id << " data_type: " << data_type << " count: " << count << " custom_type:" << custom_type << std::endl;
+
+    node = this->verse_model->getNode(node_id);
+    if(node != NULL) {
+        VerseLayer *parent_layer = node->getLayer(parent_layer_id);
+        VerseLayer *layer = new VerseLayer(node, parent_layer, layer_id, data_type, count, custom_type);
+
+        node->addLayer(layer);
+
+        node->addData((VerseData*)layer);
+
+        node->getDataModel()->update();
     }
 }
 

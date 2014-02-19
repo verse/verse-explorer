@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>VerseClient</string>
+   <string>Verse Explorer</string>
   </property>
   <property name="locale">
    <locale language="English" country="UnitedStates"/>
@@ -143,7 +143,7 @@
      <x>0</x>
      <y>0</y>
      <width>700</width>
-     <height>23</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -246,7 +246,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="../res/icons.qrc">
      <normaloff>:/images/icons/list-add.png</normaloff>:/images/icons/list-add.png</iconset>
    </property>
    <property name="text">
@@ -295,7 +295,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="../res/icons.qrc">
      <normaloff>:/images/icons/list-remove.png</normaloff>:/images/icons/list-remove.png</iconset>
    </property>
    <property name="text">
@@ -369,7 +369,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="../res/icons.qrc">
      <normaloff>:/images/icons/lock.png</normaloff>:/images/icons/lock.png</iconset>
    </property>
    <property name="text">
@@ -390,7 +390,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="../res/icons.qrc">
      <normaloff>:/images/icons/unlock.png</normaloff>:/images/icons/unlock.png</iconset>
    </property>
    <property name="text">
@@ -422,7 +422,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="../res/icons.qrc">
      <normaloff>:/images/icons/list-add.png</normaloff>:/images/icons/list-add.png</iconset>
    </property>
    <property name="text">
@@ -443,7 +443,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="../res/icons.qrc">
      <normaloff>:/images/icons/list-remove.png</normaloff>:/images/icons/list-remove.png</iconset>
    </property>
    <property name="text">
@@ -483,7 +483,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="../res/icons.qrc">
      <normaloff>:/images/icons/list-add.png</normaloff>:/images/icons/list-add.png</iconset>
    </property>
    <property name="text">
@@ -504,7 +504,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="../res/icons.qrc">
      <normaloff>:/images/icons/list-remove.png</normaloff>:/images/icons/list-remove.png</iconset>
    </property>
    <property name="text">
@@ -572,7 +572,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="../res/icons.qrc">
      <normaloff>:/images/icons/list-add.png</normaloff>:/images/icons/list-add.png</iconset>
    </property>
    <property name="text">
@@ -590,7 +590,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="../res/icons.qrc">
      <normaloff>:/images/icons/list-remove.png</normaloff>:/images/icons/list-remove.png</iconset>
    </property>
    <property name="text">
@@ -652,7 +652,7 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="icons.qrc"/>
+  <include location="../res/icons.qrc"/>
  </resources>
  <connections/>
 </ui>

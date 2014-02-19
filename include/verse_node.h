@@ -10,6 +10,7 @@
 #include "verse_node_data_model.h"
 #include "verse_taggroup.h"
 #include "verse_tag.h"
+#include "verse_layer.h"
 
 /**
   * \brief The class for node permission of one user
@@ -122,6 +123,11 @@ public:
       * \brief The map of TagGroups
       */
     std::map<uint16_t, VerseTagGroup*> taggroups;
+
+    /**
+     * \brief The map of Layers
+     */
+    std::map<uint16_t, VerseLayer*> layers;
 
     /**
       * \brief Constructor of Verse node
@@ -279,6 +285,19 @@ public:
       * \brief The setter for last_tg_id
       */
     void setLastTgID(uint16_t last_id) { this->last_tg_id = last_id; }
+
+    /**
+     * \brief VerseNode::addLayer
+     * \param layer
+     */
+    void addLayer(VerseLayer *layer);
+
+    /**
+     * @brief This method tries to find Layer with ID
+     * @param layer_id
+     * @return Returns pointer at VerseLayer
+     */
+    VerseLayer *getLayer(uint16_t layer_id);
 
     /**
      * \brief addDialog

@@ -9,6 +9,7 @@
 #include "verse_data.h"
 #include "verse_taggroup.h"
 #include "verse_tag.h"
+#include "verse_layer.h"
 
 class VerseNode;
 

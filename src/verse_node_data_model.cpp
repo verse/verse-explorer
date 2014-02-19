@@ -103,6 +103,7 @@ QVariant VerseNodeDataTreeModel::data(const QModelIndex &index, int role) const
         VerseData *data = static_cast<VerseData*>(index.internalPointer());
         VerseTagGroup *tg;
         VerseTag *tag;
+        VerseLayer *layer;
 
         switch(role) {
         // Icons
@@ -125,9 +126,18 @@ QVariant VerseNodeDataTreeModel::data(const QModelIndex &index, int role) const
                 case VerseData::VERSE_TAG:
                     icon.addFile(":/images/icons/emblem-system.png", QSize(16,16));
                     return icon.pixmap(QSize(16,16), QIcon::Normal, QIcon::On);
+                case VerseData::VERSE_LAYER:
+                    layer = (VerseLayer*)data;
+                    icon.addFile(":/images/icons/tag-group.png", QSize(16,16));
+
+                    if(layer->isSubscribed()==true) {
+                        return icon.pixmap(QSize(16,16), QIcon::Normal, QIcon::On);
+                    } else {
+                        return icon.pixmap(QSize(16,16), QIcon::Disabled, QIcon::Off);
+                    }
+                    break;
                 case VerseData::RESERVED:
                 case VerseData::VERSE_NODE:
-                case VerseData::VERSE_LAYER:
                     return QVariant();
                     break;
                 default:
@@ -155,6 +165,8 @@ QVariant VerseNodeDataTreeModel::data(const QModelIndex &index, int role) const
                     return ((VerseTagGroup*)data)->getID();
                 } else if(index.column()==1) {
                     return ((VerseTagGroup*)data)->getClientType();
+                } else if(index.column()==2) {
+                    return QVariant("TagGroup");
                 } else {
                     return QVariant();
                 }
@@ -169,6 +181,15 @@ QVariant VerseNodeDataTreeModel::data(const QModelIndex &index, int role) const
                 }
                 break;
             case VerseData::VERSE_LAYER:
+                if(index.column()==0) {
+                    return ((VerseLayer*)data)->getID();
+                } else if(index.column()==1) {
+                    return ((VerseLayer*)data)->getClientType();
+                } else if(index.column()==2) {
+                    return QVariant("Layer");
+                } else {
+                    return QVariant();
+                }
                 break;
             default:
                 break;
