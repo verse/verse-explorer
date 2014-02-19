@@ -1406,3 +1406,24 @@ void VerseClient::on_actionChange_Value_triggered()
         }
     }
 }
+
+void VerseClient::on_actionCreate_Layer_triggered()
+{
+    if(this->states == STATE_CONNECTED) {
+        QModelIndexList index_list = ui->nodeTreeView->selectionModel()->selectedIndexes();
+        int row = -1;
+
+        foreach(QModelIndex index, index_list) {
+            if (index.row()!=row && index.column()==0) {
+                VerseNode *node = static_cast<VerseNode*>(index.internalPointer());
+                if(ui->actionTesting_mode->isChecked() == true || node->can_write == true) {
+                    /*
+                    TODO: create and show dialog for new layer
+                    */
+                    break;
+                }
+                row = index.row();
+            }
+        }
+    }
+}

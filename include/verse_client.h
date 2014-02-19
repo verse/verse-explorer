@@ -234,6 +234,8 @@ private slots:
 
     void on_actionChange_Value_triggered();
 
+    void on_actionCreate_Layer_triggered();
+
 private:
     // UI stuff
     Ui::VerseClient *ui;
