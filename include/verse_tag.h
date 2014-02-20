@@ -150,11 +150,6 @@ public:
     uint8_t getDataType(void) { return this->data_type; }
 
     /**
-      * \brief This method return string representation of data type
-      */
-    static QString TagType(uint8_t _data_type);
-
-    /**
       * \brief This method set value of tag
       */
     void setTagValue(const void *_value, const uint8_t _data_type, const uint8_t _count);

@@ -26,6 +26,12 @@ public:
     uint16_t getID(void) const;
 
     /**
+     * \brief getter of verse node
+     * \return pointer at VerseNode
+     */
+    VerseNode *getNode(void) { return this->node; }
+
+    /**
       * \brief The getter of custom type
       */
     uint8_t getClientType(void) { return this->custom_type; }
@@ -34,6 +40,12 @@ public:
       * \brief The getter of subscription flag
       */
     bool isSubscribed(void) { return this->subscribed; }
+
+    /**
+     * \brief getter of data type
+     * @return data type of layer
+     */
+    uint8_t getDataType(void) { return this->data_type; }
 
 private:
 

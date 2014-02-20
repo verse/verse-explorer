@@ -25,7 +25,7 @@ TagDialog::TagDialog(QWidget *parent,
     ui->tagGroupName->setText(QString::number(tg->getClientType()));
 
     for(uint8_t type = VRS_VALUE_TYPE_UINT8; type<=VRS_VALUE_TYPE_STRING8; type++) {
-        ui->typeComboBox->addItem(VerseTag::TagType(type), type);
+        ui->typeComboBox->addItem(VerseData::ValueDataType(type), type);
     }
 
     ui->typeComboBox->setCurrentIndex(0);

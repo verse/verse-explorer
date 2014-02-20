@@ -177,7 +177,7 @@ QVariant VerseNodeDataTreeModel::data(const QModelIndex &index, int role) const
                 } else if(index.column()==1) {
                     return ((VerseTag*)data)->getClientType();
                 } else if(index.column()==2) {
-                    return VerseTag::TagType(((VerseTag*)data)->getDataType());
+                    return VerseData::ValueDataType(((VerseTag*)data)->getDataType());
                 } else {
                     return QVariant();
                 }
@@ -188,7 +188,7 @@ QVariant VerseNodeDataTreeModel::data(const QModelIndex &index, int role) const
                 } else if(index.column()==1) {
                     return ((VerseLayer*)data)->getClientType();
                 } else if(index.column()==2) {
-                    return QVariant("Layer");
+                    return QVariant("Layer:" + VerseData::ValueDataType(((VerseLayer*)data)->getDataType()));
                 } else {
                     return QVariant();
                 }
@@ -264,7 +264,7 @@ QVariant VerseNodeDataTreeModel::headerData(int section, Qt::Orientation orienta
             case 0:
                 return QVariant("ID");
             case 1:
-                return QVariant("Type");
+                return QVariant("CustomType");
             case 2:
                 return QVariant("DataType");
             }
@@ -298,6 +298,18 @@ void VerseNodeDataTreeModel::destroyTagGroup(VerseTagGroup *tg)
 
     // Delete TagGroup itself
     delete tg;
+
+    // Update DataTreeView
+    emit layoutChanged();
+}
+
+void VerseNodeDataTreeModel::destroyLayer(VerseLayer *layer)
+{
+    // DataTreeView will be changed
+    emit layoutAboutToBeChanged();
+
+    // Delete TagGroup itself
+    delete layer;
 
     // Update DataTreeView
     emit layoutChanged();

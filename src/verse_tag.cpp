@@ -93,30 +93,6 @@ VerseTag::~VerseTag()
     delete this->model;
 }
 
-QString VerseTag::TagType(uint8_t _data_type)
-{
-    switch(_data_type) {
-    case VRS_VALUE_TYPE_UINT8:
-        return "Uint8";
-    case VRS_VALUE_TYPE_UINT16:
-        return "Uint16";
-    case VRS_VALUE_TYPE_UINT32:
-        return "Uint32";
-    case VRS_VALUE_TYPE_UINT64:
-        return "Uint64";
-    case VRS_VALUE_TYPE_REAL16:
-        return "Real16";
-    case VRS_VALUE_TYPE_REAL32:
-        return "Real32";
-    case VRS_VALUE_TYPE_REAL64:
-        return "Real64";
-    case VRS_VALUE_TYPE_STRING8:
-        return "String8";
-    default:
-        return "Unknown";
-    }
-}
-
 void VerseTag::setTagValue(const void *_value, const uint8_t _data_type, const uint8_t _count)
 {
     if(_data_type != this->data_type) {

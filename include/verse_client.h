@@ -154,6 +154,10 @@ public:
                               const uint8_t count,
                               const uint16_t custom_type);
 
+    void cbReceiveLayerDestroy(const uint8_t session_id,
+                               const uint32_t node_id,
+                               const uint16_t layer_id);
+
     void updateActionsAvailibility(void);
 
     uint8_t getSessionID(void) {return this->session_id;}
@@ -235,6 +239,8 @@ private slots:
     void on_actionChange_Value_triggered();
 
     void on_actionCreate_Layer_triggered();
+
+    void on_actionDestroy_Layer_triggered();
 
 private:
     // UI stuff

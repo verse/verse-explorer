@@ -23,8 +23,8 @@ LayerDialog::LayerDialog(QWidget *parent, VerseNode *_node) :
             ui->parentLayerComboBox->addItem(QString::number(layer->getID()), QVariant(layer->getID()));
         }
 
-        for(uint8_t type = VRS_VALUE_TYPE_UINT8; type<=VRS_VALUE_TYPE_STRING8; type++) {
-            ui->dataTypeComboBox->addItem(VerseTag::TagType(type), type);
+        for(uint8_t type = VRS_VALUE_TYPE_UINT8; type<VRS_VALUE_TYPE_STRING8; type++) {
+            ui->dataTypeComboBox->addItem(VerseData::ValueDataType(type), type);
         }
 
         this->session_id = ((VerseClient*)parent)->getSessionID();

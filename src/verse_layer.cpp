@@ -1,4 +1,5 @@
 #include "include/verse_layer.h"
+#include "verse_node.h"
 
 VerseLayer::VerseLayer(VerseNode *_node,
                        VerseLayer *parent_layer,
@@ -17,6 +18,23 @@ VerseLayer::VerseLayer(VerseNode *_node,
     this->data_type = _data_type;
     this->count = _count;
     this->custom_type = _custom_type;
+}
+
+VerseLayer::~VerseLayer()
+{
+    std::map<uint16_t, VerseLayer*>::iterator layer_iter;
+
+    // Remove data from list of parent child data
+    this->node->removeData(this);
+
+    // Set parent to the NULL
+    this->setParent(NULL);
+
+    // Remove tag_group from map of tag_groups
+    if(this->node->layers.count(this->id) == 1) {
+        layer_iter = this->node->layers.find(this->id);
+        this->node->layers.erase(layer_iter);
+    }
 }
 
 uint16_t VerseLayer::getID(void) const

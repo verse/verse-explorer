@@ -6,6 +6,15 @@
 
 VerseClient *client = NULL;
 
+void vrs_receive_layer_destroy(const uint8_t session_id,
+      const uint32_t node_id,
+      const uint16_t layer_id)
+{
+    if(client != NULL) {
+        client->cbReceiveLayerDestroy(session_id, node_id, layer_id);
+    }
+}
+
 void cb_receive_layer_create(const uint8_t session_id,
      const uint32_t node_id,
      const uint16_t parent_layer_id,
@@ -210,6 +219,7 @@ int main(int argc, char *argv[])
 
     // Register layer callback functions
     vrs_register_receive_layer_create(cb_receive_layer_create);
+    vrs_register_receive_layer_destroy(vrs_receive_layer_destroy);
 
     QApplication a(argc, argv);
     VerseClient w;

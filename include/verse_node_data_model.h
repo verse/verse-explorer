@@ -87,6 +87,12 @@ public:
       */
     void destroyTag(VerseTag *tag);
 
+    /**
+     * \brief This method should be called, when layer was destroyed
+     * \param layer
+     */
+    void destroyLayer(VerseLayer *layer);
+
 private:
 
     /**

@@ -4,6 +4,8 @@
 #include <QVariant>
 #include <QModelIndex>
 
+#include <verse.h>
+
 class VerseData
 {
 private:
@@ -59,6 +61,11 @@ public:
         VERSE_LAYER,
         VERSE_LAYER_VALUE
     } DataType;
+
+    /**
+      * \brief This method return string representation of data type
+      */
+    static QString ValueDataType(uint8_t _data_type);
 
     /**
       * \brief The type of data

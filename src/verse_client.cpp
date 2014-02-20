@@ -211,7 +211,11 @@ void VerseClient::updateActionsAvailibility(void)
                         ui->actionChange_Value->setEnabled(false);
                     }
                 } else if(data->type == VerseData::VERSE_LAYER) {
-                    // TODO: enable/disable some layer related actions
+                    if(node->can_write == true) {
+                        ui->actionDestroy_Layer->setEnabled(true);
+                    } else {
+                        ui->actionDestroy_Layer->setEnabled(false);
+                    }
                 } else {
                     ui->actionDestroy_TagGroup->setEnabled(false);
                     ui->actionSubscribe_TagGroup->setEnabled(false);
@@ -331,6 +335,37 @@ int VerseClient::connectToServer(const QString &hostname)
         return 1;
     } else {
         return 0;
+    }
+}
+
+void VerseClient::cbReceiveLayerDestroy(const uint8_t session_id,
+                                       const uint32_t node_id,
+                                       const uint16_t layer_id)
+{
+    VerseNode *node;
+
+    std::cout << "session_id: " << session_id << " node_id: " << node_id << " layer_id: " << layer_id << std::endl;
+
+    node = this->verse_model->getNode(node_id);
+    if(node != NULL) {
+        VerseLayer *layer = node->getLayer(layer_id);
+
+        if(layer != NULL) {
+            QModelIndexList index_list = ui->dataTreeView->selectionModel()->selectedIndexes();
+            int row = -1;
+
+            foreach(QModelIndex index, index_list) {
+                if (index.row()!=row && index.column()==0) {
+                    VerseData *data = static_cast<VerseData*>(index.internalPointer());
+                    if (data == (VerseData*)layer) {
+                        ui->dataTreeView->selectionModel()->clear();
+                    }
+                    row = index.row();
+                }
+            }
+
+            node->getDataModel()->destroyLayer(layer);
+        }
     }
 }
 
@@ -1432,4 +1467,29 @@ void VerseClient::on_actionCreate_Layer_triggered()
             }
         }
     }
+}
+
+void VerseClient::on_actionDestroy_Layer_triggered()
+{
+    if(this->states == STATE_CONNECTED) {
+        QModelIndexList index_list = ui->dataTreeView->selectionModel()->selectedIndexes();
+        int row = -1;
+
+        foreach(QModelIndex index, index_list) {
+            if (index.row()!=row && index.column()==0) {
+                VerseData *data = static_cast<VerseData*>(index.internalPointer());
+                if(data->getType() == VerseData::VERSE_LAYER) {
+                    VerseLayer *layer = (VerseLayer*)data;
+                    VerseNode *node = layer->getNode();
+                    if(ui->actionTesting_mode->isChecked() == true || node->can_write == true) {
+                        vrs_send_layer_destroy(this->session_id, node->getPrio(), node->getID(), layer->getID());
+                        break;
+                    }
+                }
+                row = index.row();
+            }
+        }
+    }
+
+    this->updateActionsAvailibility();
 }
