@@ -178,6 +178,8 @@ QVariant VerseNodeDataTreeModel::data(const QModelIndex &index, int role) const
                     return ((VerseTag*)data)->getClientType();
                 } else if(index.column()==2) {
                     return VerseTag::TagType(((VerseTag*)data)->getDataType());
+                } else {
+                    return QVariant();
                 }
                 break;
             case VerseData::VERSE_LAYER:
@@ -213,9 +215,16 @@ QVariant VerseNodeDataTreeModel::data(const QModelIndex &index, int role) const
                     return boldFont;
                 }
                 break;
+            case VerseData::VERSE_LAYER:
+                layer = (VerseLayer*)data;
+                if(layer->isSubscribed() == true) {
+                    QFont boldFont;
+                    boldFont.setBold(true);
+                    return boldFont;
+                }
+                break;
             case VerseData::RESERVED:
             case VerseData::VERSE_NODE:
-            case VerseData::VERSE_LAYER:
                 return QVariant();
                 break;
             default:
