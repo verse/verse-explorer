@@ -29,7 +29,8 @@ SOURCES += src/main.cpp\
     src/fpsdialog.cpp \
     src/tagvaluedialog.cpp \
     src/nodedialog.cpp \
-    src/verse_layer.cpp
+    src/verse_layer.cpp \
+    src/layerdialog.cpp
 
 INCLUDEPATH += $$PWD/include
 
@@ -50,7 +51,8 @@ HEADERS  += \
     include/fpsdialog.h \
     include/tagvaluedialog.h \
     include/nodedialog.h \
-    include/verse_layer.h
+    include/verse_layer.h \
+    include/layerdialog.h
 
 FORMS    += ui/verseclient.ui \
     ui/logindialog.ui \
@@ -60,7 +62,8 @@ FORMS    += ui/verseclient.ui \
     ui/tagdialog.ui \
     ui/fpsdialog.ui \
     ui/tagvaluedialog.ui \
-    ui/nodedialog.ui
+    ui/nodedialog.ui \
+    ui/layerdialog.ui
 
 RESOURCES += \
     res/icons.qrc
