@@ -9,19 +9,18 @@ LayerDialog::LayerDialog(QWidget *parent, VerseNode *_node) :
     ui->setupUi(this);
 
     if(_node != NULL) {
-        std::map<uint16_t, VerseLayer*>::iterator layer_iter;
-//        VerseLayer *layer;
+        VerseLayer *layer = NULL;
 
         ui->nodeIDLabel->setText(QString::number(_node->getID()));
 
-        ui->parentLayerComboBox->addItem(QString::number(-1), QVariant(-1));
+        ui->parentLayerComboBox->addItem(QString("None"), QVariant(-1));
         // Add all existing layers from the node to the comboBox
-        for(layer_iter = node->layers.begin();
-            layer_iter != node->layers.end();
+        for(std::map<uint16_t, VerseLayer*>::iterator layer_iter = _node->layers.begin();
+            layer_iter != _node->layers.end();
             ++layer_iter)
         {
-//            layer = layer_iter->second;
-//            ui->parentLayerComboBox->addItem(QString::number(layer->getID()), QVariant(layer->getID()));
+            layer = layer_iter->second;
+            ui->parentLayerComboBox->addItem(QString::number(layer->getID()), QVariant(layer->getID()));
         }
 
         for(uint8_t type = VRS_VALUE_TYPE_UINT8; type<=VRS_VALUE_TYPE_STRING8; type++) {

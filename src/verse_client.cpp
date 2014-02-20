@@ -12,6 +12,7 @@
 #include "ui_logindialog.h"
 #include "ui_tagdialog.h"
 #include "nodedialog.h"
+#include "layerdialog.h"
 #include "verse_layer.h"
 #include "verse_taggroup.h"
 #include "verse_tag.h"
@@ -88,6 +89,7 @@ void VerseClient::updateActionsAvailibility(void)
             ui->actionExpand_all->setEnabled(true);
             ui->actionCreate_TagGroup->setEnabled(true);
             ui->actionDestroy_TagGroup->setEnabled(true);
+            ui->actionCreate_Layer->setEnabled(true);
             ui->actionSubscribe_TagGroup->setEnabled(true);
             ui->actionUnSubscribe_TagGroup->setEnabled(true);
             ui->actionCreate_Tag->setEnabled(true);
@@ -156,8 +158,10 @@ void VerseClient::updateActionsAvailibility(void)
             // Can client write to this node?
             if(node->can_write == true) {
                 ui->actionCreate_TagGroup->setEnabled(true);
+                ui->actionCreate_Layer->setEnabled(true);
             } else {
                 ui->actionCreate_TagGroup->setEnabled(false);
+                ui->actionCreate_Layer->setEnabled(false);
             }
 
             // Get selected item in TreeView of data
@@ -206,6 +210,8 @@ void VerseClient::updateActionsAvailibility(void)
                         ui->actionDestroy_Tag->setEnabled(false);
                         ui->actionChange_Value->setEnabled(false);
                     }
+                } else if(data->type == VerseData::VERSE_LAYER) {
+                    // TODO: enable/disable some layer related actions
                 } else {
                     ui->actionDestroy_TagGroup->setEnabled(false);
                     ui->actionSubscribe_TagGroup->setEnabled(false);
@@ -1417,9 +1423,9 @@ void VerseClient::on_actionCreate_Layer_triggered()
             if (index.row()!=row && index.column()==0) {
                 VerseNode *node = static_cast<VerseNode*>(index.internalPointer());
                 if(ui->actionTesting_mode->isChecked() == true || node->can_write == true) {
-                    /*
-                    TODO: create and show dialog for new layer
-                    */
+                    LayerDialog *layer_dig = new LayerDialog(this, node);
+                    node->addDialog(layer_dig);
+                    layer_dig->show();
                     break;
                 }
                 row = index.row();
