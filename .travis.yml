@@ -1,0 +1,13 @@
+install:
+  - sudo apt-get update
+  - sudo apt-get install libqt4-dev qt4-qmake
+# TODO: install verse from extern repository
+
+before_script:
+  - mkir build
+  - qmake-qt4 VerseExplorer.pro -r -spec linux-g++-64 CONFIG+=debug -o ./build/Makefile
+  - cd ./build
+
+script:
+  - make
+
