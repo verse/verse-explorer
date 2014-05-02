@@ -15,8 +15,7 @@ TagValueDialog::TagValueDialog(QWidget *parent,
 
     if(_tag != NULL) {
         VerseTagValue *tag_value;
-        QString value_string;
-        int decimals, min = -999999999;
+        int decimals = 0, min = -999999999;
 
         this->session_id = _session_id;
         this->node = _tag->getNode();
