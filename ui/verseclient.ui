@@ -56,6 +56,36 @@
            </widget>
           </item>
           <item>
+           <widget class="QComboBox" name="protoComboBox">
+            <property name="minimumSize">
+             <size>
+              <width>120</width>
+              <height>0</height>
+             </size>
+            </property>
+            <item>
+             <property name="text">
+              <string extracomment="UDP secured with DTLS">UDP + DTLS</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string extracomment="Unsecured UDP">UDP</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string extracomment="TCP secured with TLS">TCP + TLS</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string extracomment="Unsecured TCP">TCP</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
            <widget class="QLineEdit" name="urlLineEdit">
             <property name="text">
              <string>localhost</string>

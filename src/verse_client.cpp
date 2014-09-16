@@ -324,12 +324,12 @@ void VerseClient::callUpdate()
 
 
 // This method sends connect request to the verse server
-int VerseClient::connectToServer(const QString &hostname)
+int VerseClient::connectToServer(const QString &hostname, uint16_t flags)
 {
     QByteArray ba = hostname.toLocal8Bit();
     int ret;
 
-    ret = vrs_send_connect_request(ba.data(), "12345", 0, &session_id);
+    ret = vrs_send_connect_request(ba.data(), "12345", flags, &session_id);
     if(ret == VRS_SUCCESS) {
         this->timer->start((int)1000/this->fps);
         return 1;
@@ -1039,6 +1039,7 @@ void VerseClient::on_actionConnectDisconnect()
 {
     if(this->states == STATE_DISCONNECTED) {
         int ret;
+        uint16_t flags = 0;
         this->states = STATE_CONNECTING;
 
         ui->connectButton->setText("Cancel");
@@ -1050,7 +1051,28 @@ void VerseClient::on_actionConnectDisconnect()
         ui->actionConnect->setEnabled(false);
         ui->actionDisconnect->setEnabled(true);
 
-        ret = connectToServer(ui->urlLineEdit->text());
+        switch (ui->protoComboBox->currentIndex()) {
+        case 0:
+            flags = VRS_SEC_DATA_TLS | VRS_TP_UDP;
+            std::cout << "0: VRS_SEC_DATA_TLS | VRS_TP_UDP" << std::endl;
+            break;
+        case 1:
+            flags = VRS_SEC_DATA_NONE | VRS_TP_UDP;
+            std::cout << "1: VRS_SEC_DATA_NONE | VRS_TP_UDP" << std::endl;
+            break;
+        case 2:
+            flags = VRS_SEC_DATA_TLS | VRS_TP_TCP;
+            std::cout << "2: VRS_SEC_DATA_TLS | VRS_TP_TCP" << std::endl;
+            break;
+        case 3:
+            flags = VRS_SEC_DATA_NONE | VRS_TP_TCP;
+            std::cout << "3: VRS_SEC_DATA_NONE | VRS_TP_TCP" << std::endl;
+            break;
+        default:
+            break;
+        }
+
+        ret = connectToServer(ui->urlLineEdit->text(), flags);
         if(ret != 1) {
             this->states = STATE_DISCONNECTED;
             ui->connectButton->setEnabled(true);

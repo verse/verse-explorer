@@ -280,7 +280,7 @@ private:
     uint32_t avatar_id;
 
     //
-    int connectToServer(const QString &hostname);
+    int connectToServer(const QString &hostname, uint16_t flags);
 
     // Model holding all data
     VerseNodeTreeModel *verse_model;
